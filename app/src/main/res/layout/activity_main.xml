@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~ For additional information, contact:
+  ~ Environmental Systems Research Institute, Inc.
+  ~ Attn: Contracts Dept
+  ~ 380 New York Street
+  ~ Redlands, California, USA 92373
+  ~
+  ~ email: contracts@esri.com
+  -->
+<!-- Navigation drawer -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable name="vm" type="arcgisruntime.esri.com.mvvmwithmap.map.MapViewModel"/>
+
+
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mapCoordinatorLayout"
+            tools:context="arcgisruntime.esri.com.mvvmwithmap.map.MainActivity">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/my_toolbar"
+                app:titleTextColor="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                app:title="@{vm.getMapTitle}"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+            <com.esri.arcgisruntime.mapping.view.MapView
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mapview">
+
+            </com.esri.arcgisruntime.mapping.view.MapView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnAddFeature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="38dp"
+                android:tint="@color/cardview_light_background"
+                app:elevation="2dp"
+                app:layout_anchor="@+id/mapview"
+                app:srcCompat="@drawable/ic_twotone_pin_drop_24px"
+                app:layout_anchorGravity="top|right"
+                app:useCompatPadding="true" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDeviceLocation"
+                android:elevation="2dp"
+                app:useCompatPadding="true"
+                app:srcCompat="@android:drawable/ic_menu_mylocation"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="10dp" />
+
+
+        </android.support.design.widget.CoordinatorLayout>
+        <!-- The navigation drawer -->
+        <android.support.design.widget.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/listLinearLayout"
+                    android:layout_height="match_parent">
+
+                    <!-- The drawer contents are inserted here by the DrawerFragment -->
+
+                </FrameLayout>
+
+            </LinearLayout>
+        </android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout>
+</layout>
